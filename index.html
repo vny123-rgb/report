@@ -13,10 +13,8 @@
       --accent2: #2a5f8f;
       --muted: #8a7f72;
       --rule: #d4c9b8;
-      --weekly-bg: #eef4f9;
-      --monthly-bg: #fdf1ee;
-      --weekly-dot: #2a5f8f;
-      --monthly-dot: #c8401a;
+      --sidebar-w: 230px;
+      --header-h: 58px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,563 +23,595 @@
       background: var(--paper);
       color: var(--ink);
       font-family: 'Noto Serif SC', serif;
-      min-height: 100vh;
-      background-image:
-        repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 27px,
-          rgba(180,165,140,0.12) 28px
-        );
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     /* ── HEADER ── */
     header {
-      border-bottom: 2px solid var(--ink);
-      padding: 2.5rem 3rem 1.8rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 5px;
-      background: repeating-linear-gradient(
-        90deg,
-        var(--accent) 0px, var(--accent) 20px,
-        var(--accent2) 20px, var(--accent2) 40px,
-        var(--ink) 40px, var(--ink) 60px
-      );
-    }
-
-    .header-inner {
-      max-width: 900px;
-      margin: 0 auto;
+      height: var(--header-h);
+      background: var(--ink);
       display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 2rem;
-    }
-
-    .header-left {}
-
-    .eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: -0.02em;
-    }
-
-    h1 span {
-      color: var(--accent);
-    }
-
-    .header-meta {
-      text-align: right;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .live-date {
-      font-weight: 500;
-      color: var(--ink);
-    }
-
-    /* ── STATS BAR ── */
-    .stats-bar {
-      border-bottom: 1px solid var(--rule);
-      padding: 0.9rem 3rem;
-      background: rgba(26,22,18,0.03);
-    }
-
-    .stats-inner {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      gap: 2.5rem;
       align-items: center;
+      padding: 0 1.5rem;
+      gap: 1.2rem;
+      border-bottom: 3px solid var(--accent);
+      flex-shrink: 0;
+      z-index: 100;
     }
 
-    .stat {
-      display: flex;
-      align-items: baseline;
-      gap: 0.4rem;
-    }
-
-    .stat-num {
+    .header-logo {
       font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--ink);
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--paper);
+      letter-spacing: -0.02em;
+      white-space: nowrap;
     }
 
-    .stat-label {
+    .header-logo span { color: var(--accent); }
+
+    .header-divider {
+      width: 1px;
+      height: 22px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .header-breadcrumb {
       font-family: 'DM Mono', monospace;
       font-size: 0.68rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.4);
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .stat-divider {
-      width: 1px;
-      height: 24px;
-      background: var(--rule);
+    .header-breadcrumb span {
+      color: rgba(255,255,255,0.75);
     }
 
-    /* ── MAIN ── */
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2.5rem 3rem 4rem;
-    }
-
-    /* ── FILTER TABS ── */
-    .filter-row {
+    .header-actions {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .filter-btn {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.4rem 1rem;
-      border: 1px solid var(--ink);
-      background: transparent;
-      color: var(--ink);
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: var(--ink);
-      color: var(--paper);
-    }
-
-    .filter-btn.active-weekly { background: var(--accent2); border-color: var(--accent2); color: white; }
-    .filter-btn.active-monthly { background: var(--accent); border-color: var(--accent); color: white; }
-
-    .search-wrap {
+      gap: 0.6rem;
       margin-left: auto;
+    }
+
+    .btn-open {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.8rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s;
+      display: none;
+    }
+
+    .btn-open:hover { background: rgba(255,255,255,0.18); color: white; }
+    .btn-open.visible { display: inline-block; }
+
+    .header-search {
       position: relative;
     }
 
     #search-input {
       font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      padding: 0.4rem 0.8rem 0.4rem 2rem;
-      border: 1px solid var(--rule);
-      background: transparent;
-      color: var(--ink);
+      font-size: 0.68rem;
+      padding: 0.38rem 0.8rem 0.38rem 1.9rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: white;
       width: 160px;
       outline: none;
-      transition: border-color 0.2s;
+      transition: all 0.2s;
     }
 
-    #search-input:focus { border-color: var(--ink); }
+    #search-input::placeholder { color: rgba(255,255,255,0.3); }
+    #search-input:focus { background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,0.35); }
 
     .search-icon {
       position: absolute;
-      left: 0.6rem;
+      left: 0.55rem;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 0.75rem;
-      color: var(--muted);
+      color: rgba(255,255,255,0.35);
+      font-size: 0.8rem;
       pointer-events: none;
     }
 
-    /* ── SECTION HEADING ── */
-    .section-heading {
+    /* ── BODY LAYOUT ── */
+    .body {
       display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-      margin-top: 2.5rem;
-    }
-
-    .section-heading:first-of-type { margin-top: 0; }
-
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .section-rule {
       flex: 1;
-      height: 1px;
-      background: var(--rule);
-    }
-
-    /* ── REPORT GRID ── */
-    .report-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1px;
-      background: var(--rule);
-      border: 1px solid var(--rule);
-    }
-
-    .report-card {
-      background: var(--paper);
-      padding: 1.4rem 1.5rem;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      position: relative;
-      transition: background 0.15s;
       overflow: hidden;
     }
 
-    .report-card::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      transition: opacity 0.15s;
-      opacity: 0;
-    }
-
-    .report-card.weekly::before { background: var(--weekly-dot); }
-    .report-card.monthly::before { background: var(--monthly-dot); }
-
-    .report-card:hover {
+    /* ── SIDEBAR ── */
+    aside {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
       background: white;
+      border-right: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
 
-    .report-card:hover::before { opacity: 1; }
+    .sidebar-latest {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid var(--rule);
+      background: var(--paper);
+    }
 
-    .card-type {
+    .sidebar-section-label {
       font-family: 'DM Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.15em;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      margin-bottom: 0.6rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .latest-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .latest-pill {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      padding: 0.25rem 0.55rem;
+      border: 1px solid var(--rule);
+      background: white;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.12s;
+      white-space: nowrap;
+    }
+
+    .latest-pill:hover,
+    .latest-pill.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+    .sidebar-nav {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0.5rem 0 1.5rem;
+    }
+
+    .brand-section { margin-bottom: 0.2rem; }
+
+    .brand-toggle {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      justify-content: space-between;
+      padding: 0.55rem 1rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.12s;
     }
 
-    .type-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      display: inline-block;
+    .brand-toggle:hover { background: rgba(26,22,18,0.04); }
+
+    .brand-toggle-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
-    .weekly .type-dot { background: var(--weekly-dot); }
-    .monthly .type-dot { background: var(--monthly-dot); }
+    .brand-chevron {
+      font-size: 0.55rem;
+      color: var(--muted);
+      transition: transform 0.2s;
+    }
 
-    .weekly .card-type { color: var(--accent2); }
-    .monthly .card-type { color: var(--accent); }
+    .brand-toggle.open .brand-chevron { transform: rotate(90deg); }
 
-    .card-title {
+    .brand-body { display: none; }
+    .brand-body.open { display: block; }
+
+    .type-label-small {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.57rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.45rem 1rem 0.15rem 1.6rem;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.32rem 1rem 0.32rem 1.8rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.66rem;
+      color: var(--muted);
+      cursor: pointer;
+      border-left: 2px solid transparent;
+      transition: all 0.12s;
+      user-select: none;
+    }
+
+    .nav-link:hover { color: var(--ink); background: rgba(26,22,18,0.03); }
+
+    .nav-link.active {
+      color: var(--accent2);
+      border-left-color: var(--accent2);
+      background: rgba(42,95,143,0.06);
+    }
+
+    .nav-link.active.monthly {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: rgba(200,64,26,0.06);
+    }
+
+    .nav-link-date {
+      font-size: 0.58rem;
+      color: var(--rule);
+      white-space: nowrap;
+    }
+
+    .nav-link.active .nav-link-date { color: inherit; opacity: 0.6; }
+
+    /* ── MAIN PANEL ── */
+    .main-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    /* Empty state */
+    .empty-state {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: var(--muted);
+    }
+
+    .empty-icon {
+      font-size: 2.5rem;
+      opacity: 0.3;
+    }
+
+    .empty-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 0.4rem;
+      font-size: 1.2rem;
+      color: var(--ink);
+      opacity: 0.3;
     }
 
-    .card-date {
+    .empty-sub {
       font-family: 'DM Mono', monospace;
       font-size: 0.68rem;
       color: var(--muted);
+      opacity: 0.6;
     }
 
-    .card-arrow {
-      position: absolute;
-      right: 1.2rem;
-      bottom: 1.2rem;
-      font-size: 0.85rem;
-      color: var(--rule);
-      transition: color 0.15s, transform 0.15s;
+    /* iframe wrapper */
+    .iframe-wrap {
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
     }
 
-    .report-card:hover .card-arrow {
-      color: var(--ink);
-      transform: translate(2px, -2px);
-    }
+    .iframe-wrap.visible { display: flex; }
 
-    /* ── EMPTY STATE ── */
-    .empty-state {
-      padding: 3rem;
-      text-align: center;
-      color: var(--muted);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.8rem;
-      border: 1px dashed var(--rule);
-    }
-
-    /* ── HOW TO ADD (collapsed) ── */
-    .add-guide {
-      margin-top: 3rem;
-      border: 1px solid var(--rule);
-    }
-
-    .add-guide summary {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.9rem 1.2rem;
-      cursor: pointer;
-      color: var(--muted);
-      user-select: none;
+    .iframe-toolbar {
+      height: 36px;
+      background: white;
+      border-bottom: 1px solid var(--rule);
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      padding: 0 1rem;
+      gap: 0.8rem;
+      flex-shrink: 0;
     }
 
-    .add-guide summary:hover { color: var(--ink); }
-
-    .add-guide-body {
-      padding: 1.2rem 1.5rem 1.5rem;
-      border-top: 1px solid var(--rule);
+    .iframe-title {
       font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-      line-height: 2;
-    }
-
-    .add-guide-body code {
-      background: rgba(26,22,18,0.06);
-      padding: 0.1em 0.4em;
+      font-size: 0.66rem;
       color: var(--ink);
+      flex: 1;
     }
 
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--rule);
-      padding: 1.2rem 3rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
+    .iframe-title .brand-tag {
       color: var(--muted);
-      max-width: 900px;
-      margin: 0 auto;
+      margin-right: 0.4rem;
+    }
+
+    .iframe-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+    }
+
+    #report-frame {
+      flex: 1;
+      border: none;
+      background: white;
+    }
+
+    /* search results */
+    .search-results {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+      display: none;
+    }
+
+    .search-results.visible { display: block; }
+
+    .search-result-item {
       display: flex;
-      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      background: white;
+      border: 1px solid var(--rule);
+      margin-bottom: 1px;
+      cursor: pointer;
+      transition: background 0.12s;
     }
 
-    /* ── HIDDEN ── */
-    .hidden { display: none !important; }
+    .search-result-item:hover { background: #fffdf9; }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .sr-brand {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+      width: 70px;
+      flex-shrink: 0;
     }
 
-    .report-card {
-      animation: fadeUp 0.35s ease both;
+    .sr-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      flex: 1;
     }
 
-    @media (max-width: 600px) {
-      header, .stats-bar { padding-left: 1.2rem; padding-right: 1.2rem; }
-      main { padding: 1.5rem 1.2rem 3rem; }
-      .header-inner { flex-direction: column; align-items: flex-start; }
-      .header-meta { text-align: left; }
-      footer { flex-direction: column; gap: 0.4rem; padding: 1rem 1.2rem; }
+    .sr-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+    }
+
+    .sr-type {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      padding: 0.15rem 0.5rem;
+      border: 1px solid var(--rule);
+      color: var(--muted);
     }
   </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
-  <div class="header-inner">
-    <div class="header-left">
-      <div class="eyebrow">Report Archive</div>
-      <h1>报告<span>中心</span></h1>
-    </div>
-    <div class="header-meta">
-      <div class="live-date" id="live-date">—</div>
-      <div>Weekly &amp; Monthly Reports</div>
+  <div class="header-logo">报告<span>中心</span></div>
+  <div class="header-divider"></div>
+  <div class="header-breadcrumb" id="header-breadcrumb">← 选择左侧报告预览</div>
+  <div class="header-actions">
+    <a class="btn-open" id="btn-open-tab" href="#" target="_blank">↗ 新标签打开</a>
+    <div class="header-search">
+      <span class="search-icon">⌕</span>
+      <input id="search-input" type="text" placeholder="搜索…" oninput="applySearch()" />
     </div>
   </div>
 </header>
 
-<div class="stats-bar">
-  <div class="stats-inner">
-    <div class="stat">
-      <span class="stat-num" id="stat-total">0</span>
-      <span class="stat-label">份报告</span>
+<!-- BODY -->
+<div class="body">
+
+  <!-- SIDEBAR -->
+  <aside>
+    <div class="sidebar-nav" id="sidebar-nav"></div>
+  </aside>
+
+  <!-- MAIN PANEL -->
+  <div class="main-panel">
+
+    <!-- Empty state -->
+    <div class="empty-state" id="empty-state">
+      <div class="empty-icon">📄</div>
+      <div class="empty-title">选择一份报告</div>
+      <div class="empty-sub">从左侧选择报告，将在此处直接预览</div>
     </div>
-    <div class="stat-divider"></div>
-    <div class="stat">
-      <span class="stat-num" id="stat-weekly">0</span>
-      <span class="stat-label">周报</span>
+
+    <!-- Search results -->
+    <div class="search-results" id="search-results"></div>
+
+    <!-- iframe -->
+    <div class="iframe-wrap" id="iframe-wrap">
+      <div class="iframe-toolbar">
+        <div class="iframe-title" id="iframe-title"></div>
+        <div class="iframe-date" id="iframe-date"></div>
+      </div>
+      <iframe id="report-frame" src="" title="报告预览"></iframe>
     </div>
-    <div class="stat-divider"></div>
-    <div class="stat">
-      <span class="stat-num" id="stat-monthly">0</span>
-      <span class="stat-label">月报</span>
-    </div>
+
   </div>
 </div>
 
-<main>
-
-  <div class="filter-row">
-    <button class="filter-btn active" data-filter="all" onclick="setFilter('all', this)">全部</button>
-    <button class="filter-btn" data-filter="weekly" onclick="setFilter('weekly', this)">周报</button>
-    <button class="filter-btn" data-filter="monthly" onclick="setFilter('monthly', this)">月报</button>
-    <div class="search-wrap">
-      <span class="search-icon">⌕</span>
-      <input id="search-input" type="text" placeholder="搜索报告…" oninput="applySearch()" />
-    </div>
-  </div>
-
-  <!-- ░░ WEEKLY SECTION ░░ -->
-  <div class="section-heading" id="weekly-heading">
-    <span class="section-label">周报 Weekly</span>
-    <div class="section-rule"></div>
-  </div>
-  <div class="report-grid" id="weekly-grid"></div>
-
-  <!-- ░░ MONTHLY SECTION ░░ -->
-  <div class="section-heading" id="monthly-heading">
-    <span class="section-label">月报 Monthly</span>
-    <div class="section-rule"></div>
-  </div>
-  <div class="report-grid" id="monthly-grid"></div>
-
-  <div class="empty-state hidden" id="empty-state">没有找到匹配的报告</div>
-
-  <!-- ░░ HOW TO ADD ░░ -->
-  <details class="add-guide">
-    <summary>📎 如何添加新报告？</summary>
-    <div class="add-guide-body">
-      在下方 <code>REPORTS</code> 列表加一行，然后把 HTML 文件放进对应文件夹，push 到 GitHub 即可。<br><br>
-      周报命名格式：<code>weekly/YYYY-WNN.html</code>（例：<code>weekly/2025-W24.html</code>）<br>
-      月报命名格式：<code>monthly/YYYY-MM.html</code>（例：<code>monthly/2025-06.html</code>）
-    </div>
-  </details>
-
-</main>
-
-<footer>
-  <span>报告中心 · 由 GitHub Pages 托管</span>
-  <span id="footer-count">共 0 份报告</span>
-</footer>
-
 <script>
   // ══════════════════════════════════════════════════
-  //  ✏️  在这里添加你的报告
-  //  type: 'weekly' 或 'monthly'
-  //  title: 显示的标题
-  //  date: 显示的日期文字
-  //  file: 相对路径
+  //  ✏️  在这里添加你的报告（最新的放最上面）
   // ══════════════════════════════════════════════════
-  const REPORTS = [
-    // 示例（可以删掉）
-    { type: 'weekly', title: 'OK188KH - Week 21', date: '2026-05-25 ~ 2026-05-31', file: 'weekly/OK188KH_2026_W21.html' },
-    { type: 'weekly', title: '17WINKH - Week 21', date: '2026-05-25 ~ 2026-05-31', file: 'weekly/17WINKH_2026_W21.html' },
-    { type: 'monthly', title: 'OK188KH - 2026 May', date: '2026-05-01 ~ 2026-05-31', file: 'monthly/OK188KH_2026_05.html' },
-    { type: 'monthly', title: '17WINKH - 2026 May', date: '2026-05-01 ~ 2026-05-31', file: 'monthly/17WINKH_2026_05.html' },
-  ];
+ const REPORTS = [
+  { brand: 'OK188KH', type: 'weekly',  title: 'Week 21',  date: '2026-05-25 ~ 2026-05-31', uploaded: '2026-06-03', file: 'weekly/OK188KH_2026_W21.html' },
+  { brand: '17WINKH', type: 'weekly',  title: 'Week 21',  date: '2026-05-25 ~ 2026-05-31', uploaded: '2026-06-03', file: 'weekly/17WINKH_2026_W21.html' },
+  { brand: 'OK188KH', type: 'monthly', title: 'May 2026', date: '2026-05-01 ~ 2026-05-31', uploaded: '2026-06-03', file: 'monthly/OK188KH_2026_05.html' },
+  { brand: '17WINKH', type: 'monthly', title: 'May 2026', date: '2026-05-01 ~ 2026-05-31', uploaded: '2026-06-03', file: 'monthly/17WINKH_2026_05.html' },
+];
   // ══════════════════════════════════════════════════
 
-  let activeFilter = 'all';
+  let currentFile = null;
 
-  function buildCards() {
-    const weeklyGrid  = document.getElementById('weekly-grid');
-    const monthlyGrid = document.getElementById('monthly-grid');
-    weeklyGrid.innerHTML = '';
-    monthlyGrid.innerHTML = '';
+  function loadReport(r) {
+    currentFile = r;
 
-    const query = document.getElementById('search-input').value.toLowerCase();
+    // Update all active states
+    document.querySelectorAll('.nav-link, .latest-pill').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll(`[data-file="${r.file}"]`).forEach(el => el.classList.add('active'));
 
-    const weekly  = REPORTS.filter(r => r.type === 'weekly');
-    const monthly = REPORTS.filter(r => r.type === 'monthly');
+    // Hide search, show iframe
+    document.getElementById('search-results').classList.remove('visible');
+    document.getElementById('empty-state').style.display = 'none';
+    document.getElementById('iframe-wrap').classList.add('visible');
 
-    function renderCard(r, i) {
-      const q = query.trim();
-      if (q && !r.title.toLowerCase().includes(q) && !r.date.toLowerCase().includes(q)) return null;
-      if (activeFilter !== 'all' && r.type !== activeFilter) return null;
+    // Update header
+    document.getElementById('header-breadcrumb').innerHTML =
+      `<span>${r.brand}</span> · ${r.type === 'weekly' ? '周报' : '月报'} · ${r.title}`;
+    document.getElementById('iframe-title').innerHTML =
+      `<span class="brand-tag">${r.brand}</span>${r.title}`;
+    document.getElementById('iframe-date').textContent = r.date;
 
-      const a = document.createElement('a');
-      a.className = `report-card ${r.type}`;
-      a.href = r.file;
-      a.style.animationDelay = `${i * 40}ms`;
-      a.innerHTML = `
-        <div class="card-type"><span class="type-dot"></span>${r.type === 'weekly' ? '周报' : '月报'}</div>
-        <div class="card-title">${r.title}</div>
-        <div class="card-date">${r.date}</div>
-        <span class="card-arrow">↗</span>
-      `;
-      return a;
+    const btnOpen = document.getElementById('btn-open-tab');
+    btnOpen.href = r.file;
+    btnOpen.classList.add('visible');
+
+    document.getElementById('report-frame').src = r.file;
+  }
+
+  function buildLatestPills() {
+    const seen = new Set();
+    const latest = REPORTS.filter(r => {
+      const key = r.brand + r.type;
+      if (seen.has(key)) return false;
+      seen.add(key); return true;
+    });
+
+    const container = document.getElementById('latest-pills');
+    latest.forEach(r => {
+      const pill = document.createElement('div');
+      pill.className = 'latest-pill';
+      pill.dataset.file = r.file;
+      pill.textContent = `${r.brand} ${r.type === 'weekly' ? 'W' : 'M'}`;
+      pill.title = `${r.brand} · ${r.title}`;
+      pill.onclick = () => loadReport(r);
+      container.appendChild(pill);
+    });
+
+    // Show last updated
+    const label = document.querySelector('.sidebar-section-label');
+    if (REPORTS.length > 0) {
+      label.textContent = `▶ 最新  ·  更新于 ${REPORTS[0].uploaded}`;
+    }
+  }
+
+  function buildSidebar() {
+    const nav = document.getElementById('sidebar-nav');
+    const brands = {};
+    REPORTS.forEach(r => {
+      if (!brands[r.brand]) brands[r.brand] = { weekly: [], monthly: [] };
+      brands[r.brand][r.type].push(r);
+    });
+
+    Object.keys(brands).forEach((brand, bi) => {
+      const section = document.createElement('div');
+      section.className = 'brand-section';
+
+      const toggle = document.createElement('div');
+      toggle.className = 'brand-toggle' + (bi === 0 ? ' open' : '');
+      toggle.innerHTML = `<span class="brand-toggle-name">${brand}</span><span class="brand-chevron">▶</span>`;
+
+      const body = document.createElement('div');
+      body.className = 'brand-body' + (bi === 0 ? ' open' : '');
+
+      toggle.onclick = () => {
+        toggle.classList.toggle('open');
+        body.classList.toggle('open');
+      };
+
+      ['weekly', 'monthly'].forEach(type => {
+        if (!brands[brand][type].length) return;
+        const lbl = document.createElement('div');
+        lbl.className = 'type-label-small';
+        lbl.textContent = type === 'weekly' ? '周报' : '月报';
+        body.appendChild(lbl);
+
+        brands[brand][type].forEach(r => {
+          const link = document.createElement('div');
+          link.className = `nav-link ${type}`;
+          link.dataset.file = r.file;
+          link.innerHTML = `<span>${r.title}</span><span class="nav-link-date">${r.date.split(' ~ ')[1] || ''}</span>`;
+          link.onclick = () => loadReport(r);
+          body.appendChild(link);
+        });
+      });
+
+      section.appendChild(toggle);
+      section.appendChild(body);
+      nav.appendChild(section);
+    });
+  }
+
+  function applySearch() {
+    const q = document.getElementById('search-input').value.toLowerCase().trim();
+    const resultsEl = document.getElementById('search-results');
+
+    if (!q) {
+      resultsEl.classList.remove('visible');
+      if (currentFile) {
+        document.getElementById('iframe-wrap').classList.add('visible');
+        document.getElementById('empty-state').style.display = 'none';
+      } else {
+        document.getElementById('empty-state').style.display = '';
+      }
+      return;
     }
 
-    let wCount = 0, mCount = 0;
+    document.getElementById('iframe-wrap').classList.remove('visible');
+    document.getElementById('empty-state').style.display = 'none';
+    resultsEl.classList.add('visible');
 
-    weekly.forEach((r, i) => {
-      const card = renderCard(r, i);
-      if (card) { weeklyGrid.appendChild(card); wCount++; }
-    });
+    const matches = REPORTS.filter(r =>
+      r.brand.toLowerCase().includes(q) ||
+      r.title.toLowerCase().includes(q) ||
+      r.date.includes(q)
+    );
 
-    monthly.forEach((r, i) => {
-      const card = renderCard(r, i);
-      if (card) { monthlyGrid.appendChild(card); mCount++; }
-    });
-
-    // Show/hide sections
-    const showWeekly  = activeFilter !== 'monthly';
-    const showMonthly = activeFilter !== 'weekly';
-    document.getElementById('weekly-heading').classList.toggle('hidden', !showWeekly);
-    document.getElementById('weekly-grid').classList.toggle('hidden', !showWeekly);
-    document.getElementById('monthly-heading').classList.toggle('hidden', !showMonthly);
-    document.getElementById('monthly-grid').classList.toggle('hidden', !showMonthly);
-
-    const totalVisible = wCount + mCount;
-    document.getElementById('empty-state').classList.toggle('hidden', totalVisible > 0);
-
-    // Stats
-    document.getElementById('stat-total').textContent   = REPORTS.length;
-    document.getElementById('stat-weekly').textContent  = weekly.length;
-    document.getElementById('stat-monthly').textContent = monthly.length;
-    document.getElementById('footer-count').textContent = `共 ${REPORTS.length} 份报告`;
+    resultsEl.innerHTML = matches.length
+      ? matches.map((r, i) => `
+          <div class="search-result-item" data-idx="${i}" onclick="loadReportByFile('${r.file}')">
+            <span class="sr-brand">${r.brand}</span>
+            <span class="sr-title">${r.title}</span>
+            <span class="sr-date">${r.date}</span>
+            <span class="sr-type">${r.type === 'weekly' ? '周报' : '月报'}</span>
+          </div>
+        `).join('')
+      : `<div style="padding:2rem;font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted)">没有找到匹配的报告</div>`;
   }
 
-  function setFilter(f, btn) {
-    activeFilter = f;
-    document.querySelectorAll('.filter-btn').forEach(b => {
-      b.classList.remove('active', 'active-weekly', 'active-monthly');
-    });
-    btn.classList.add('active');
-    if (f === 'weekly')  btn.classList.add('active-weekly');
-    if (f === 'monthly') btn.classList.add('active-monthly');
-    buildCards();
+  function loadReportByFile(file) {
+    const r = REPORTS.find(r => r.file === file);
+    if (r) {
+      loadReport(r);
+      document.getElementById('search-input').value = '';
+      applySearch();
+    }
   }
 
-  function applySearch() { buildCards(); }
-
-  // Live date
-  const now = new Date();
-  document.getElementById('live-date').textContent =
-    now.toLocaleDateString('zh-CN', { year:'numeric', month:'long', day:'numeric', weekday:'long' });
-
-  buildCards();
+  buildSidebar();
 </script>
 </body>
 </html>
