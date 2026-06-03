@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>报告中心</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a1612;
+      --paper: #f5f0e8;
+      --accent: #c8401a;
+      --accent2: #2a5f8f;
+      --muted: #8a7f72;
+      --rule: #d4c9b8;
+      --weekly-bg: #eef4f9;
+      --monthly-bg: #fdf1ee;
+      --weekly-dot: #2a5f8f;
+      --monthly-dot: #c8401a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Noto Serif SC', serif;
+      min-height: 100vh;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 27px,
+          rgba(180,165,140,0.12) 28px
+        );
+    }
+
+    /* ── HEADER ── */
+    header {
+      border-bottom: 2px solid var(--ink);
+      padding: 2.5rem 3rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--accent) 0px, var(--accent) 20px,
+        var(--accent2) 20px, var(--accent2) 40px,
+        var(--ink) 40px, var(--ink) 60px
+      );
+    }
+
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .header-left {}
+
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .header-meta {
+      text-align: right;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .live-date {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      border-bottom: 1px solid var(--rule);
+      padding: 0.9rem 3rem;
+      background: rgba(26,22,18,0.03);
+    }
+
+    .stats-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .stat {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 24px;
+      background: var(--rule);
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 3rem 4rem;
+    }
+
+    /* ── FILTER TABS ── */
+    .filter-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .filter-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .filter-btn.active-weekly { background: var(--accent2); border-color: var(--accent2); color: white; }
+    .filter-btn.active-monthly { background: var(--accent); border-color: var(--accent); color: white; }
+
+    .search-wrap {
+      margin-left: auto;
+      position: relative;
+    }
+
+    #search-input {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      padding: 0.4rem 0.8rem 0.4rem 2rem;
+      border: 1px solid var(--rule);
+      background: transparent;
+      color: var(--ink);
+      width: 160px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    #search-input:focus { border-color: var(--ink); }
+
+    .search-icon {
+      position: absolute;
+      left: 0.6rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.75rem;
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    /* ── SECTION HEADING ── */
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .section-heading:first-of-type { margin-top: 0; }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ── REPORT GRID ── */
+    .report-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .report-card {
+      background: var(--paper);
+      padding: 1.4rem 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      position: relative;
+      transition: background 0.15s;
+      overflow: hidden;
+    }
+
+    .report-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      transition: opacity 0.15s;
+      opacity: 0;
+    }
+
+    .report-card.weekly::before { background: var(--weekly-dot); }
+    .report-card.monthly::before { background: var(--monthly-dot); }
+
+    .report-card:hover {
+      background: white;
+    }
+
+    .report-card:hover::before { opacity: 1; }
+
+    .card-type {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .type-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .weekly .type-dot { background: var(--weekly-dot); }
+    .monthly .type-dot { background: var(--monthly-dot); }
+
+    .weekly .card-type { color: var(--accent2); }
+    .monthly .card-type { color: var(--accent); }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+    }
+
+    .card-arrow {
+      position: absolute;
+      right: 1.2rem;
+      bottom: 1.2rem;
+      font-size: 0.85rem;
+      color: var(--rule);
+      transition: color 0.15s, transform 0.15s;
+    }
+
+    .report-card:hover .card-arrow {
+      color: var(--ink);
+      transform: translate(2px, -2px);
+    }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      padding: 3rem;
+      text-align: center;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      border: 1px dashed var(--rule);
+    }
+
+    /* ── HOW TO ADD (collapsed) ── */
+    .add-guide {
+      margin-top: 3rem;
+      border: 1px solid var(--rule);
+    }
+
+    .add-guide summary {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.9rem 1.2rem;
+      cursor: pointer;
+      color: var(--muted);
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .add-guide summary:hover { color: var(--ink); }
+
+    .add-guide-body {
+      padding: 1.2rem 1.5rem 1.5rem;
+      border-top: 1px solid var(--rule);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 2;
+    }
+
+    .add-guide-body code {
+      background: rgba(26,22,18,0.06);
+      padding: 0.1em 0.4em;
+      color: var(--ink);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 1.2rem 3rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ── HIDDEN ── */
+    .hidden { display: none !important; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .report-card {
+      animation: fadeUp 0.35s ease both;
+    }
+
+    @media (max-width: 600px) {
+      header, .stats-bar { padding-left: 1.2rem; padding-right: 1.2rem; }
+      main { padding: 1.5rem 1.2rem 3rem; }
+      .header-inner { flex-direction: column; align-items: flex-start; }
+      .header-meta { text-align: left; }
+      footer { flex-direction: column; gap: 0.4rem; padding: 1rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="eyebrow">Report Archive</div>
+      <h1>报告<span>中心</span></h1>
+    </div>
+    <div class="header-meta">
+      <div class="live-date" id="live-date">—</div>
+      <div>Weekly &amp; Monthly Reports</div>
+    </div>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat">
+      <span class="stat-num" id="stat-total">0</span>
+      <span class="stat-label">份报告</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num" id="stat-weekly">0</span>
+      <span class="stat-label">周报</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <span class="stat-num" id="stat-monthly">0</span>
+      <span class="stat-label">月报</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <div class="filter-row">
+    <button class="filter-btn active" data-filter="all" onclick="setFilter('all', this)">全部</button>
+    <button class="filter-btn" data-filter="weekly" onclick="setFilter('weekly', this)">周报</button>
+    <button class="filter-btn" data-filter="monthly" onclick="setFilter('monthly', this)">月报</button>
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input id="search-input" type="text" placeholder="搜索报告…" oninput="applySearch()" />
+    </div>
+  </div>
+
+  <!-- ░░ WEEKLY SECTION ░░ -->
+  <div class="section-heading" id="weekly-heading">
+    <span class="section-label">周报 Weekly</span>
+    <div class="section-rule"></div>
+  </div>
+  <div class="report-grid" id="weekly-grid"></div>
+
+  <!-- ░░ MONTHLY SECTION ░░ -->
+  <div class="section-heading" id="monthly-heading">
+    <span class="section-label">月报 Monthly</span>
+    <div class="section-rule"></div>
+  </div>
+  <div class="report-grid" id="monthly-grid"></div>
+
+  <div class="empty-state hidden" id="empty-state">没有找到匹配的报告</div>
+
+  <!-- ░░ HOW TO ADD ░░ -->
+  <details class="add-guide">
+    <summary>📎 如何添加新报告？</summary>
+    <div class="add-guide-body">
+      在下方 <code>REPORTS</code> 列表加一行，然后把 HTML 文件放进对应文件夹，push 到 GitHub 即可。<br><br>
+      周报命名格式：<code>weekly/YYYY-WNN.html</code>（例：<code>weekly/2025-W24.html</code>）<br>
+      月报命名格式：<code>monthly/YYYY-MM.html</code>（例：<code>monthly/2025-06.html</code>）
+    </div>
+  </details>
+
+</main>
+
+<footer>
+  <span>报告中心 · 由 GitHub Pages 托管</span>
+  <span id="footer-count">共 0 份报告</span>
+</footer>
+
+<script>
+  // ══════════════════════════════════════════════════
+  //  ✏️  在这里添加你的报告
+  //  type: 'weekly' 或 'monthly'
+  //  title: 显示的标题
+  //  date: 显示的日期文字
+  //  file: 相对路径
+  // ══════════════════════════════════════════════════
+  const REPORTS = [
+    // 示例（可以删掉）
+    { type: 'weekly',  title: '第 24 周报告', date: '2025-06-09 ~ 2025-06-15', file: 'weekly/2025-W24.html' },
+    { type: 'weekly',  title: '第 23 周报告', date: '2025-06-02 ~ 2025-06-08', file: 'weekly/2025-W23.html' },
+    { type: 'monthly', title: '2025 年 5 月报告', date: '2025-05-01 ~ 2025-05-31', file: 'monthly/2025-05.html' },
+    { type: 'monthly', title: '2025 年 4 月报告', date: '2025-04-01 ~ 2025-04-30', file: 'monthly/2025-04.html' },
+  ];
+  // ══════════════════════════════════════════════════
+
+  let activeFilter = 'all';
+
+  function buildCards() {
+    const weeklyGrid  = document.getElementById('weekly-grid');
+    const monthlyGrid = document.getElementById('monthly-grid');
+    weeklyGrid.innerHTML = '';
+    monthlyGrid.innerHTML = '';
+
+    const query = document.getElementById('search-input').value.toLowerCase();
+
+    const weekly  = REPORTS.filter(r => r.type === 'weekly');
+    const monthly = REPORTS.filter(r => r.type === 'monthly');
+
+    function renderCard(r, i) {
+      const q = query.trim();
+      if (q && !r.title.toLowerCase().includes(q) && !r.date.toLowerCase().includes(q)) return null;
+      if (activeFilter !== 'all' && r.type !== activeFilter) return null;
+
+      const a = document.createElement('a');
+      a.className = `report-card ${r.type}`;
+      a.href = r.file;
+      a.style.animationDelay = `${i * 40}ms`;
+      a.innerHTML = `
+        <div class="card-type"><span class="type-dot"></span>${r.type === 'weekly' ? '周报' : '月报'}</div>
+        <div class="card-title">${r.title}</div>
+        <div class="card-date">${r.date}</div>
+        <span class="card-arrow">↗</span>
+      `;
+      return a;
+    }
+
+    let wCount = 0, mCount = 0;
+
+    weekly.forEach((r, i) => {
+      const card = renderCard(r, i);
+      if (card) { weeklyGrid.appendChild(card); wCount++; }
+    });
+
+    monthly.forEach((r, i) => {
+      const card = renderCard(r, i);
+      if (card) { monthlyGrid.appendChild(card); mCount++; }
+    });
+
+    // Show/hide sections
+    const showWeekly  = activeFilter !== 'monthly';
+    const showMonthly = activeFilter !== 'weekly';
+    document.getElementById('weekly-heading').classList.toggle('hidden', !showWeekly);
+    document.getElementById('weekly-grid').classList.toggle('hidden', !showWeekly);
+    document.getElementById('monthly-heading').classList.toggle('hidden', !showMonthly);
+    document.getElementById('monthly-grid').classList.toggle('hidden', !showMonthly);
+
+    const totalVisible = wCount + mCount;
+    document.getElementById('empty-state').classList.toggle('hidden', totalVisible > 0);
+
+    // Stats
+    document.getElementById('stat-total').textContent   = REPORTS.length;
+    document.getElementById('stat-weekly').textContent  = weekly.length;
+    document.getElementById('stat-monthly').textContent = monthly.length;
+    document.getElementById('footer-count').textContent = `共 ${REPORTS.length} 份报告`;
+  }
+
+  function setFilter(f, btn) {
+    activeFilter = f;
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.remove('active', 'active-weekly', 'active-monthly');
+    });
+    btn.classList.add('active');
+    if (f === 'weekly')  btn.classList.add('active-weekly');
+    if (f === 'monthly') btn.classList.add('active-monthly');
+    buildCards();
+  }
+
+  function applySearch() { buildCards(); }
+
+  // Live date
+  const now = new Date();
+  document.getElementById('live-date').textContent =
+    now.toLocaleDateString('zh-CN', { year:'numeric', month:'long', day:'numeric', weekday:'long' });
+
+  buildCards();
+</script>
+</body>
+</html>
