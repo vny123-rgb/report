@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>USC 17WINKH 月报 · 2026年5月</title>
+<style>
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:14px;line-height:1.6;color:#172B4D;max-width:1000px;margin:0 auto;padding:32px 40px;background:#fff}
+  .page-title{font-size:26px;font-weight:700;color:#172B4D;margin:0 0 6px;padding-bottom:12px;border-bottom:3px solid #6554C0}
+  .page-meta{font-size:12px;color:#6B778C;margin-bottom:28px}
+  h2{font-size:17px;font-weight:700;color:#172B4D;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid #DFE1E6}
+  h3{font-size:13px;font-weight:700;color:#5E6C84;margin:16px 0 8px;text-transform:uppercase;letter-spacing:.04em}
+  .panel{border-radius:4px;padding:11px 15px;margin:10px 0;display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.55}
+  .panel-icon{font-size:15px;flex-shrink:0;margin-top:1px}.panel-body{flex:1}
+  .panel.info{background:#EAE6FF;border-left:4px solid #6554C0}
+  .panel.warning{background:#FFFAE6;border-left:4px solid #FF8B00}
+  .panel.success{background:#E3FCEF;border-left:4px solid #00875A}
+  .panel.error{background:#FFEBE6;border-left:4px solid #DE350B}
+  .panel strong{font-weight:600}
+  .metric-row{display:flex;gap:10px;margin:12px 0;flex-wrap:wrap}
+  .metric-card{flex:1;min-width:100px;background:#F4F5F7;border-radius:6px;padding:12px 14px}
+  .metric-card .label{font-size:11px;color:#6B778C;font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+  .metric-card .value{font-size:22px;font-weight:700;color:#172B4D;line-height:1.2}
+  .metric-card .sub{font-size:11px;color:#6B778C;margin-top:3px}
+  .wow{display:inline-flex;align-items:center;gap:2px;font-size:10px;font-weight:700;padding:1px 6px;border-radius:3px;margin-top:5px;letter-spacing:.02em;white-space:nowrap}
+  .wow-up{background:#E3FCEF;color:#006644}.wow-down{background:#FFEBE6;color:#BF2600}.wow-neutral{background:#F4F5F7;color:#5E6C84}
+  .value.green{color:#00875A!important}.value.red{color:#DE350B!important}.value.orange{color:#FF8B00!important}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin:10px 0}
+  th{background:#F4F5F7;color:#5E6C84;font-weight:700;font-size:11px;text-align:left;padding:7px 10px;border:1px solid #DFE1E6;white-space:nowrap}
+  td{padding:7px 10px;border:1px solid #DFE1E6;vertical-align:middle;color:#172B4D}
+  tr:nth-child(even) td{background:#FAFBFC}
+  .lozenge{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:600;line-height:1.6;white-space:nowrap}
+  .lg{background:#E3FCEF;color:#006644}.ly{background:#FFFAE6;color:#974F0C}.lr{background:#FFEBE6;color:#BF2600}.lb{background:#DEEBFF;color:#0747A6}.lgr{background:#F4F5F7;color:#5E6C84}.lp{background:#EAE6FF;color:#403294}
+  .code{font-family:"SFMono-Regular",Consolas,monospace;font-size:11px;color:#5E6C84}
+  hr{border:none;border-top:1px solid #DFE1E6;margin:24px 0}
+  p{margin:8px 0}ul{margin:8px 0 8px 20px}ul li{margin-bottom:4px}
+  .section-note{font-size:12px;color:#6B778C;margin-bottom:10px}
+  .funnel-row{display:flex;align-items:center;gap:4px;margin:14px 0;flex-wrap:wrap}
+  .funnel-step{display:flex;flex-direction:column;align-items:center;flex:1;min-width:80px}
+  .funnel-box{width:100%;padding:10px 6px;background:#EAE6FF;border-radius:5px;text-align:center}
+  .funnel-box .f-label{font-size:11px;color:#403294;font-weight:700}
+  .funnel-box .f-val{font-size:20px;font-weight:700;color:#6554C0}
+  .funnel-box .f-rate{font-size:11px;color:#6B778C;margin-top:2px}
+  .funnel-arrow{font-size:18px;color:#B3BAC5;align-self:center;flex:0 0 auto}
+  .funnel-step.warn .funnel-box{background:#FFEBE6}.funnel-step.warn .funnel-box .f-label{color:#BF2600}.funnel-step.warn .funnel-box .f-val{color:#DE350B}
+  .ads-grid{display:grid;grid-template-columns:1fr;gap:14px;margin:14px 0}
+  .ads-card{border:1px solid #DFE1E6;border-radius:8px;overflow:hidden}
+  .ads-card.has-fdc{border-top:3px solid #00875A}.ads-card.no-conv{border-top:3px solid #FF8B00}.ads-card.awareness{border-top:3px solid #6554C0}
+  .ads-card-header{padding:10px 14px;background:#F4F5F7;border-bottom:1px solid #DFE1E6;display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .ads-card-header .ads-name{font-family:"SFMono-Regular",Consolas,monospace;font-size:11px;color:#172B4D;font-weight:700;flex:1}
+  .ads-card-body{padding:12px 14px;display:flex;gap:16px}
+  .ads-preview{flex-shrink:0;width:110px}
+  .ads-preview img{width:110px;height:110px;object-fit:cover;border-radius:5px;border:1px solid #DFE1E6;display:block}
+  .ads-preview .preview-label{font-size:10px;color:#6B778C;text-align:center;margin-top:4px;line-height:1.4}
+  .ads-kpi-section{flex:1;min-width:0}
+  .kpi-group-label{font-size:10px;color:#6B778C;font-weight:700;letter-spacing:.04em;margin-bottom:4px;margin-top:8px;text-transform:uppercase}
+  .ads-kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:8px}
+  .ads-kpi{background:#FAFBFC;border:1px solid #EBECF0;border-radius:5px;padding:7px 9px}
+  .ads-kpi .kpi-label{font-size:10px;color:#6B778C;font-weight:500;letter-spacing:.03em;margin-bottom:3px}
+  .ads-kpi .kpi-value{font-size:15px;font-weight:700;color:#172B4D;line-height:1.2}
+  .ads-kpi .kpi-value.green{color:#00875A}.ads-kpi .kpi-value.red{color:#DE350B}.ads-kpi .kpi-value.orange{color:#FF8B00}
+  .ads-tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  .chart-wrap{position:relative;height:260px;margin:12px 0 6px}
+  .chart-wrap-sm{position:relative;height:200px;margin:10px 0 4px}
+  .chart-legend{display:flex;gap:18px;font-size:12px;color:#5E6C84;margin-bottom:6px;flex-wrap:wrap}
+  .chart-legend span{display:flex;align-items:center;gap:6px}
+  .legend-box{width:12px;height:12px;border-radius:2px;display:inline-block}
+  .kpi-tracker-table td.pass{background:#E3FCEF;color:#006644;font-weight:700;text-align:center}
+  .kpi-tracker-table td.fail{background:#FFEBE6;color:#BF2600;font-weight:700;text-align:center}
+  .kpi-tracker-table td.na{background:#F4F5F7;color:#6B778C;text-align:center}
+  .ggr-progress-bar-wrap{background:#EBECF0;border-radius:6px;height:22px;margin:10px 0;overflow:hidden}
+  .ggr-progress-bar{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:10px;font-size:11px;font-weight:700;color:#fff;white-space:nowrap}
+  .rank-img{width:44px;height:44px;object-fit:cover;border-radius:4px;border:1px solid #DFE1E6;display:block}
+  .rank-no-img{width:44px;height:44px;border-radius:4px;border:1px solid #DFE1E6;background:#F4F5F7;display:flex;align-items:center;justify-content:center;font-size:9px;color:#6B778C;text-align:center;line-height:1.3}
+  td.img-cell{width:54px;padding:4px 6px}
+  .ret-mature{background:#E3FCEF;color:#006644;font-size:10px;font-weight:600;padding:1px 5px;border-radius:2px}
+  .ret-immature{background:#F4F5F7;color:#5E6C84;font-size:10px;padding:1px 5px;border-radius:2px}
+  .missing-img-alert{background:#FFFAE6;border:1px solid #FF8B00;border-radius:4px;padding:8px 12px;font-size:12px;margin:8px 0}
+</style>
+</head>
+<body>
+<div class="page-title">USC 17WINKH 月报 · 2026年5月</div>
+<div class="page-meta">
+  【USC 分析】报告生成日期：2026年6月3日（周三）· 汇报周期：2026年5月1日–5月31日 · 货币单位：USD<br>
+  数据来源：Supabase <code>usc_campaign_result</code> · 品牌 KPI 依据：USC_SBKH_17WINKH Brand Playbook
+</div>
+
+<!-- §1 概览 -->
+<h2>§1 · 月度核心数据概览（对比4月）</h2>
+<div class="panel info"><div class="panel-icon">📋</div><div class="panel-body">
+  <strong>5月概况：</strong>17WINKH 正式规模化投放（4月仅 $189 小额测试），5月 Spend $699.76，Lead <strong>82人</strong>，Chat 107人（含 Organic 29次），REG 19人。核心问题：漏斗下层断层，FDC 全月仅 <strong>1人</strong>，GGR 为负值（-$20.00，疑为退款/调账），距月度目标差距极大。
+</div></div>
+<div class="metric-row">
+  <div class="metric-card"><div class="label">Ads Spend</div><div class="value">$699.76</div><div class="sub">4月：$189.28（测试）</div><span class="wow wow-up">▲ 规模化</span></div>
+  <div class="metric-card"><div class="label">IMP</div><div class="value">163,263</div><div class="sub">4月：226,523</div><span class="wow wow-neutral">≈ 调整</span></div>
+  <div class="metric-card"><div class="label">CTR</div><div class="value green">0.94%</div><div class="sub">4月：0.71%</div><span class="wow wow-up">▲ +0.23pp</span></div>
+  <div class="metric-card"><div class="label">Lead</div><div class="value">82</div><div class="sub">4月：1</div><span class="wow wow-up">▲ 规模爆发</span></div>
+</div>
+<div class="metric-row">
+  <div class="metric-card"><div class="label">Chat</div><div class="value">107</div><div class="sub">4月：9</div><span class="wow wow-up">▲ +1,089%</span></div>
+  <div class="metric-card"><div class="label">REG</div><div class="value orange">19</div><div class="sub">4月：1</div><span class="wow wow-up">▲ 上量</span></div>
+  <div class="metric-card"><div class="label">FDC</div><div class="value red">1</div><div class="sub">4月：0 · 目标≥5/日</div><span class="wow wow-down">▼ 严重不足</span></div>
+  <div class="metric-card"><div class="label">GGR（实际）</div><div class="value red">-$20.00</div><div class="sub">4月：$0 · 疑退款/调账</div><span class="wow wow-down">▼ 异常</span></div>
+</div>
+
+<!-- §2 漏斗 -->
+<h2>§2 · 全月漏斗表现</h2>
+<p class="section-note">全月汇总，含有机来源（Organic_WIKH Chat 29次，REG 1人）。Lead 总数 82人。</p>
+<div class="funnel-row">
+  <div class="funnel-step"><div class="funnel-box"><div class="f-label">LEAD</div><div class="f-val">82</div><div class="f-rate">询问基数</div></div></div>
+  <div class="funnel-arrow">›</div>
+  <div class="funnel-step"><div class="funnel-box"><div class="f-label">CHAT</div><div class="f-val">107</div><div class="f-rate">含有机，Chat>Lead</div></div></div>
+  <div class="funnel-arrow">›</div>
+  <div class="funnel-step"><div class="funnel-box"><div class="f-label">REG</div><div class="f-val">19</div><div class="f-rate">REG/Lead = 23.2%</div></div></div>
+  <div class="funnel-arrow">›</div>
+  <div class="funnel-step warn"><div class="funnel-box"><div class="f-label">FDC</div><div class="f-val">1</div><div class="f-rate">FDC/REG = 5.3% ⚠</div></div></div>
+  <div class="funnel-arrow">›</div>
+  <div class="funnel-step warn"><div class="funnel-box"><div class="f-label">FDA</div><div class="f-val">$5.00</div><div class="f-rate">目标 Avg FD ≥$20</div></div></div>
+</div>
+<table>
+  <tr><th>指标</th><th>5月</th><th>4月</th><th>MoM</th><th>备注</th></tr>
+  <tr><td>Lead</td><td>82</td><td>1</td><td><span class="lozenge lg">▲ 大幅增加</span></td><td>品牌规模化投放</td></tr>
+  <tr><td>Chat</td><td>107</td><td>9</td><td><span class="lozenge lg">▲ +1089%</span></td><td>含 Organic 29次</td></tr>
+  <tr><td>REG</td><td>19</td><td>1</td><td><span class="lozenge lg">▲ 上量</span></td><td>REG/Chat = 17.8%</td></tr>
+  <tr><td>FDC</td><td><strong>1</strong></td><td>0</td><td><span class="lozenge lr">⚠ 极度偏低</span></td><td>目标 ≥5人/天</td></tr>
+  <tr><td>FDA</td><td>$5.00</td><td>—</td><td>—</td><td>目标 Avg FD ≥$20</td></tr>
+  <tr><td>SDA</td><td>$5.00</td><td>—</td><td>—</td><td>首月极少</td></tr>
+  <tr><td>GGR</td><td><strong>-$20.00</strong></td><td>$0</td><td><span class="lozenge lr">⚠ 负值</span></td><td>疑退款/调账，建议核查</td></tr>
+</table>
+
+<!-- §3 每周趋势 -->
+<h2>§3 · 每周花费与转化趋势</h2>
+<p class="section-note">W1=4/27–5/3 · W2=5/4–5/10（停投）· W3=5/11–5/17 · W4=5/18–5/24 · W5=5/25–5/31</p>
+<div class="chart-legend">
+  <span><span class="legend-box" style="background:#6554C0"></span>Ads Spend ($)</span>
+  <span><span class="legend-box" style="background:#FF8B00;border-radius:50%"></span>Lead (人)</span>
+  <span><span class="legend-box" style="background:#0052CC;border-radius:50%"></span>Chat (人)</span>
+  <span><span class="legend-box" style="background:#00875A;border-radius:50%"></span>REG (人)</span>
+</div>
+<div class="chart-wrap"><canvas id="weeklyChart"></canvas></div>
+<table>
+  <tr><th>周次</th><th>周期</th><th>Spend</th><th>IMP</th><th>Clicks</th><th>CTR</th><th>Lead</th><th>Chat</th><th>REG</th><th>FDC</th><th>FDA</th><th>GGR</th></tr>
+  <tr><td><strong>W1</strong></td><td>4/27–5/3</td><td>$12.46</td><td>37,122</td><td>87</td><td>0.23%</td><td>0</td><td>1</td><td>0</td><td>0</td><td>—</td><td>—</td></tr>
+  <tr><td><strong>W2</strong></td><td>5/4–5/10</td><td>$0</td><td>0</td><td>0</td><td>—</td><td>0</td><td>0</td><td>0</td><td>0</td><td>—</td><td>—</td></tr>
+  <tr><td><strong>W3</strong></td><td>5/11–5/17</td><td>$127.93</td><td>125,365</td><td>1,126</td><td>0.90%</td><td>7</td><td>16</td><td>0</td><td>0</td><td>—</td><td>—</td></tr>
+  <tr><td><strong>W4</strong></td><td>5/18–5/24</td><td>$300.92</td><td>25,152</td><td>234</td><td>0.93%</td><td>34</td><td>44</td><td>6</td><td>0</td><td>—</td><td>—</td></tr>
+  <tr><td><strong>W5</strong></td><td>5/25–5/31</td><td>$270.91</td><td>12,746</td><td>167</td><td>1.31%</td><td>41</td><td>47</td><td>13</td><td>1</td><td>$5.00</td><td>-$20.00</td></tr>
+  <tr style="background:#F0F0FF;font-weight:700"><td>5月合计</td><td>—</td><td>$699.76</td><td>163,263</td><td>1,527</td><td>0.94%</td><td>82</td><td>107</td><td>19</td><td>1</td><td>$5.00</td><td>-$20.00</td></tr>
+</table>
+
+<!-- §4 KPI + GGR进度 -->
+<h2>§4 · KPI Tracker 与月度 GGR 进度（5月）</h2>
+<h3>L2 · Weekly KPI 评估（D7 Ads Rate ≤0.70 · 单客 D7A ≥$100）</h3>
+<p class="section-note">17WINKH 全月仅 1 位 FDC（5/30），D7 窗口截至报告日（6/3）尚未成熟（6/6到期）。所有周均无法正式 L2 评估。</p>
+<table class="kpi-tracker-table">
+  <tr><th>周次</th><th>周期</th><th>Spend</th><th>FDC</th><th>D7A</th><th>D7 Ads Rate</th><th>Rate ≤0.70</th><th>单客 ≥$100</th><th>L2综合</th></tr>
+  <tr><td><strong>W3</strong></td><td>5/11–5/17</td><td>$127.93</td><td>0</td><td>—</td><td>—</td><td class="fail">✗ 无FDC</td><td class="fail">✗</td><td class="fail">❌</td></tr>
+  <tr><td><strong>W4</strong></td><td>5/18–5/24</td><td>$300.92</td><td>0</td><td>—</td><td>—</td><td class="fail">✗ 无FDC</td><td class="fail">✗</td><td class="fail">❌</td></tr>
+  <tr><td><strong>W5</strong></td><td>5/25–5/31</td><td>$270.91</td><td>1</td><td>— ⚠未成熟</td><td>—</td><td class="na">⏳ 待成熟 (6/6)</td><td class="na">⏳ 待评估</td><td class="na">⏳ 待成熟</td></tr>
+</table>
+
+<h3>月度 GGR 达成进度 — 4月 vs 5月对比</h3>
+<p class="section-note">17WINKH 4月 GGR 为 $0（测试期无首存），5月 GGR = -$20.00（疑退款/调账异常）。同一条 bar 显示两个月各自到达的进度位置。</p>
+
+<div style="margin:18px 0 24px">
+  <!-- Single unified progress bar: both Apr and May are effectively 0%, bar stays empty -->
+  <div style="position:relative;background:#EBECF0;border-radius:8px;height:36px;overflow:hidden">
+    <!-- Apr: $0 = 0% -->
+    <div style="position:absolute;left:0;top:0;width:0%;height:100%;background:#B3BAC5"></div>
+    <!-- May: -$20 = still effectively 0%, use a small red marker to indicate anomaly -->
+    <div style="position:absolute;left:0;top:0;width:0.2%;height:100%;background:#DE350B;min-width:4px"></div>
+    <div style="position:absolute;left:50%;top:0;height:100%;display:flex;align-items:center;font-size:11px;color:#6B778C;font-weight:600;transform:translateX(-50%)">4月 $0 · 5月 -$20 ≈ 0%达成 · 目标 $35,000</div>
+  </div>
+  <div style="display:flex;gap:24px;margin-top:10px;font-size:12px;color:#5E6C84;flex-wrap:wrap">
+    <span><span style="display:inline-block;width:14px;height:14px;background:#B3BAC5;border-radius:2px;vertical-align:middle;margin-right:5px"></span>4月 GGR $0 — 达成率 <strong>0%</strong>（品牌测试期）</span>
+    <span><span style="display:inline-block;width:14px;height:14px;background:#DE350B;border-radius:2px;vertical-align:middle;margin-right:5px"></span>5月 GGR -$20 — 达成率 <strong>~0%</strong>（疑退款异常）</span>
+    <span><span style="display:inline-block;width:14px;height:14px;background:#EBECF0;border:1px solid #B3BAC5;border-radius:2px;vertical-align:middle;margin-right:5px"></span>全部缺口 $35,000（100%）</span>
+  </div>
+  <div class="chart-legend" style="margin-top:16px">
+    <span><span class="legend-box" style="background:#B3BAC5"></span>4月 GGR（各周）</span>
+    <span><span class="legend-box" style="background:#6554C0"></span>5月 GGR（各周）</span>
+  </div>
+  <div class="chart-wrap-sm"><canvas id="ggrChart"></canvas></div>
+</div>
+
+<div class="metric-row">
+  <div class="metric-card"><div class="label">4月 GGR 实际</div><div class="value">$0</div><div class="sub">品牌测试期，无首存</div></div>
+  <div class="metric-card"><div class="label">5月 GGR 实际</div><div class="value red">-$20.00</div><div class="sub">疑退款调账，达成率 0%</div></div>
+  <div class="metric-card"><div class="label">FDC（全月）</div><div class="value red">1人</div><div class="sub">目标 ≥5人/日</div></div>
+  <div class="metric-card"><div class="label">月度总结</div><div class="value red">未达成</div><div class="sub">品牌处于起步积累期</div></div>
+</div>
+<div class="panel error"><div class="panel-icon">🚨</div><div class="panel-body">
+  <strong>月度 GGR 未达成。</strong>17WINKH 5月 GGR -$20.00（疑退款/调账异常），全月 FDC 仅 1 人。广告端流量已进入（Chat 107次），但下层漏斗（REG→首存）严重断层，转化率仅 5.3%。品牌目前处于早期积累期，GGR 目标待后续月份追赶。
+</div></div>
+
+<!-- §5 素材详情 -->
+<h2>§5 · 当月各广告素材表现详情</h2>
+
+<div class="ads-grid">
+
+  <!-- 2471 -->
+  <div class="ads-card no-conv">
+    <div class="ads-card-header">
+      <div class="ads-name">USC_WIKH_TRSA_IM_2471_KH01</div>
+      <span class="lozenge ly">PAUSED ⏸</span><span class="lozenge lp">月度花费 #1</span>
+    </div>
+    <div class="ads-card-body">
+      <div class="ads-preview">
+        <img src="https://www.facebook.com/ads/image/?d=AQLwWwvNBtJKai3LKFJxe9l5nDwluZJDmWtDgOXVdrXVu3bdj2LuSH3rPWEXqTpSMqhTD3d2cRk2amaHosTWfVTlJYNNDCYfEqnrFtHarZmOvArtKXeKsoI9vqZrETSPduXpItflMVv8hoDxNGE-dUwS" alt="2471" onerror="this.style.background='#EAE6FF';this.alt='24/7 Support Service'">
+        <div class="preview-label">24/7 Support Service</div>
+      </div>
+      <div class="ads-kpi-section">
+        <div class="kpi-group-label">📊 支出侧</div>
+        <div class="ads-kpi-row">
+          <div class="ads-kpi"><div class="kpi-label">Spend</div><div class="kpi-value">$260.16</div></div>
+          <div class="ads-kpi"><div class="kpi-label">IMP</div><div class="kpi-value">59,386</div></div>
+          <div class="ads-kpi"><div class="kpi-label">Clicks</div><div class="kpi-value">722</div></div>
+          <div class="ads-kpi"><div class="kpi-label">CTR</div><div class="kpi-value green">1.22%</div></div>
+          <div class="ads-kpi"><div class="kpi-label">CPM</div><div class="kpi-value green">$4.38</div></div>
+        </div>
+        <div class="kpi-group-label">💰 转化侧</div>
+        <div class="ads-kpi-row">
+          <div class="ads-kpi"><div class="kpi-label">Lead</div><div class="kpi-value">29</div></div>
+          <div class="ads-kpi"><div class="kpi-label">Chat</div><div class="kpi-value">28</div></div>
+          <div class="ads-kpi"><div class="kpi-label">REG</div><div class="kpi-value">6</div></div>
+          <div class="ads-kpi"><div class="kpi-label">FDC</div><div class="kpi-value red">0</div></div>
+          <div class="ads-kpi"><div class="kpi-label">FDA</div><div class="kpi-value">—</div></div>
+        </div>
+        <div class="ads-tag-row"><span class="lozenge lg">CTR 1.22%</span><span class="lozenge lg">CPM $4.38 极低</span><span class="lozenge lr">FDC 0 漏斗断层</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLT2 -->
+  <div class="ads-card has-fdc">
+    <div class="ads-card-header">
+      <div class="ads-name">USC_WIKH_TRSA_VD_SLT2_KH01</div>
+      <span class="lozenge lg">ACTIVE ▶</span><span class="lozenge lp">唯一出FDC素材</span>
+    </div>
+    <div class="ads-card-body">
+      <div class="ads-preview">
+        <img src="https://inz9-huat.com/USC_Pbi_report_assets/USC_WIKH_TRSA_VD_SLT2_KH01.jpg" alt="SLT2" onerror="this.style.background='#E3FCEF';this.alt='Ways of Qilin + AI Girl'">
+        <div class="preview-label">Ways of Qilin + AI Girl</div>
+      </div>
+      <div class="ads-kpi-section">
+        <div class="kpi-group-label">📊 支出侧</div>
+        <div class="ads-kpi-row">
+          <div class="ads-kpi"><div class="kpi-label">Spend</div><div class="kpi-value">$157.93</div></div>
+          <div class="ads-kpi"><div class="kpi-label">IMP</div><div class="kpi-value">5,205</div></div>
+          <div class="ads-kpi"><div class="kpi-label">Clicks</div><div class="kpi-value">73</div></div>
+          <div class="ads-kpi"><div class="kpi-label">CTR</div><div class="kpi-value green">1.40%</div></div>
+          <div class="ads-kpi"><div class="kpi-label">CPM</div><div class="kpi-value orange">$30.34</div></div>
+        </div>
+        <div class="kpi-group-label">💰 转化侧</div>
+        <div class="ads-kpi-row">
+          <div class="ads-kpi"><div class="kpi-label">Lead</div><div class="kpi-value">22</div></div>
+          <div class="ads-kpi"><div class="kpi-label">Chat</div><div class="kpi-value">21</div></div>
+          <div class="ads-kpi"><div class="kpi-label">REG</div><div class="kpi-value">7</div></div>
+          <div class="ads-kpi"><div class="kpi-label">FDC</div><div class="kpi-value green">1</div></div>
+          <div class="ads-kpi"><div class="kpi-label">FDA</div><div class="kpi-value">$5.00</div></div>
+        </div>
+        <div class="ads-kpi-row">
+          <div class="ads-kpi"><div class="kpi-label">Avg FD</div><div class="kpi-value red">$5.00</div></div>
+          <div class="ads-kpi"><div class="kpi-label">SDA</div><div class="kpi-value">$5.00</div></div>
+          <div class="ads-kpi"><div class="kpi-label">D7A</div><div class="kpi-value orange">— 未成熟</div><div class="kpi-sub">⚠ 6/6到期</div></div>
+        </div>
+        <div class="ads-tag-row"><span class="lozenge lg">月度唯一出FDC</span><span class="lozenge lg">CTR 1.40% 最高</span><span class="lozenge lr">CPM $30.34 偏高</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRS1 -->
+  <div class="ads-card no-conv">
+    <div class="ads-card-header">
+      <div class="ads-name">USC_WIKH_TRSA_IM_CRS1_KH01</div>
+      <span class="lozenge ly">PAUSED ⏸</span>
+    </div>
+    <div class="ads-card-body">
+      <div class="ads-preview">
+        <img src="https://inz9-huat.com/USC_Pbi_report_assets/USC_WIKH_TRSA_IM_CRS1_KH01.jpg" alt="CRS1" onerror="this.style.background='#F4F5F7';this.alt='Carousel Slot+Live+Promo'">
+        <div class="preview-label">Carousel: Slot + Live + Promo</div>
+      </div>
+      <div class="ads-kpi-section">
+        <div class="kpi-group-label">📊 支出侧</div>
+        <div class="ads-kpi-row">
+          <div class="ads-kpi"><div class="kpi-label">Spend</div><div class="kpi-value">$132.63</div></div>
+          <div class="ads-kpi"><div class="kpi-label">IMP</div><div class="kpi-value">34,356</div></div>
+          <div class="ads-kpi"><div class="kpi-label">Clicks</div><div class="kpi-value">417</div></div>
+          <div class="ads-kpi"><div class="kpi-label">CTR</div><div class="kpi-value green">1.21%</div></div>
+          <div class="ads-kpi"><div class="kpi-label">CPM</div><div class="kpi-value green">$3.86</div></div>
+        </div>
+        <div class="ads-kpi-row">
+          <div class="ads-kpi"><div class="kpi-label">Lead</div><div class="kpi-value">13</div></div>
+          <div class="ads-kpi"><div class="kpi-label">Chat</div><div class="kpi-value">13</div></div>
+          <div class="ads-kpi"><div class="kpi-label">REG</div><div class="kpi-value">2</div></div>
+          <div class="ads-kpi"><div class="kpi-label">FDC</div><div class="kpi-value red">0</div></div>
+        </div>
+        <div class="ads-tag-row"><span class="lozenge lg">CPM $3.86 极低</span><span class="lozenge lr">无FDC</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CRS2 -->
+  <div class="ads-card no-conv">
+    <div class="ads-card-header">
+      <div class="ads-name">USC_WIKH_TRSA_IM_CRS2_KH01</div>
+      <span class="lozenge ly">PAUSED ⏸</span>
+    </div>
+    <div class="ads-card-body">
+      <div class="ads-preview">
+        <img src="https://www.facebook.com/ads/image/?d=AQLBAHhCFLFi9JWplgIxkB9LsVDZ8hHkV8pk3WpaDSWBQlJIJ-N6fJFAUg0GSSoOz1JPNqNmPOorMtaDdJGaNSKkTDj3gtkXNJeEhFGxJM5YzMPVewWlrZ2lJRzHyM1Wj9uAi5dOgTK4ie3svU3MkLrc" alt="CRS2" onerror="this.style.background='#F4F5F7';this.alt='AI Girl Carousel'">
+        <div class="preview-label">AI Girl Carousel: Slot+Live+Promo</div>
+      </div>
+      <div class="ads-kpi-section">
+        <div class="kpi-group-label">📊 支出侧</div>
+        <div class="ads-kpi-row">
+          <div class="ads-kpi"><div class="kpi-label">Spend</div><div class="kpi-value">$57.29</div></div>
+          <div class="ads-kpi"><div class="kpi-label">IMP</div><div class="kpi-value">3,968</div></div>
+          <div class="ads-kpi"><div class="kpi-label">Clicks</div><div class="kpi-value">48</div></div>
+          <div class="ads-kpi"><div class="kpi-label">CTR</div><div class="kpi-value green">1.21%</div></div>
+          <div class="ads-kpi"><div class="kpi-label">CPM</div><div class="kpi-value orange">$14.44</div></div>
+        </div>
+        <div class="ads-kpi-row">
+          <div class="ads-kpi"><div class="kpi-label">Lead</div><div class="kpi-value">5</div></div>
+          <div class="ads-kpi"><div class="kpi-label">FDC</div><div class="kpi-value red">0</div></div>
+        </div>
+        <div class="ads-tag-row"><span class="lozenge lr">无FDC/REG</span><span class="lozenge lgr">5/25–5/31</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLT1 -->
+  <div class="ads-card no-conv">
+    <div class="ads-card-header">
+      <div class="ads-name">USC_WIKH_TRSA_IM_SLT1_KH01</div>
+      <span class="lozenge ly">PAUSED ⏸</span>
+    </div>
+    <div class="ads-card-body">
+      <div class="ads-preview">
+        <img src="https://www.facebook.com/ads/image/?d=AQLRZJN9N7MKdSxV1Wb0QgsSDAhzSni-NSbc-OnJwl_Ohwyduz90d-G5ozWkdAUcz_qNHiB6WR4w9FdJVh5hevi_e2Wf_pXiezK8BoddHdxuHW7pRAsKOof7fs9pzTNTQ-vG-oK0DzXaFuThDImxs3RL" alt="SLT1" onerror="this.style.background='#F4F5F7';this.alt='Multiple Slot Image'">
+        <div class="preview-label">Multiple Slot Image</div>
+      </div>
+      <div class="ads-kpi-section">
+        <div class="kpi-group-label">📊 支出侧</div>
+        <div class="ads-kpi-row">
+          <div class="ads-kpi"><div class="kpi-label">Spend</div><div class="kpi-value">$38.85</div></div>
+          <div class="ads-kpi"><div class="kpi-label">IMP</div><div class="kpi-value">12,982</div></div>
+          <div class="ads-kpi"><div class="kpi-label">Clicks</div><div class="kpi-value">167</div></div>
+          <div class="ads-kpi"><div class="kpi-label">CTR</div><div class="kpi-value green">1.29%</div></div>
+          <div class="ads-kpi"><div class="kpi-label">CPM</div><div class="kpi-value green">$2.99</div></div>
+        </div>
+        <div class="ads-kpi-row">
+          <div class="ads-kpi"><div class="kpi-label">Lead</div><div class="kpi-value">2</div></div>
+          <div class="ads-kpi"><div class="kpi-label">FDC</div><div class="kpi-value red">0</div></div>
+        </div>
+        <div class="ads-tag-row"><span class="lozenge lg">CPM $2.99 极低</span><span class="lozenge lr">Lead→FDC 断层</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BNS1 缺图 -->
+  <div class="ads-card no-conv">
+    <div class="ads-card-header">
+      <div class="ads-name">USC_WIKH_TRSA_VD_BNS1_KH01</div>
+      <span class="lozenge lg">ACTIVE ▶</span><span class="lozenge lp">5/30上线 · CTR最高</span>
+    </div>
+    <div class="ads-card-body">
+      <div class="ads-preview">
+        <img src="https://www.facebook.com/ads/image/?d=AQJg-nJtGSGCLubvv9yAnspXQNNWsnJfZFmSHUB4YTx-8Q2VBxHYxRC9KiGK50HnK-PNRAB1BANncHuztXwaRzUrhpgo4GgSlkIRQ0F3krUoWXmXZzErqAaQtJuiLqum616dAonHSv6j8pBszxdtWyhW" alt="BNS1" onerror="this.style.background='#EAE6FF';this.alt='Bonus'">
+        <div class="preview-label">Bonus</div>
+      </div>
+      <div class="ads-kpi-section">
+        <div class="kpi-group-label">📊 支出侧（仅2天）</div>
+        <div class="ads-kpi-row">
+          <div class="ads-kpi"><div class="kpi-label">Spend</div><div class="kpi-value">$32.04</div></div>
+          <div class="ads-kpi"><div class="kpi-label">IMP</div><div class="kpi-value">1,550</div></div>
+          <div class="ads-kpi"><div class="kpi-label">Clicks</div><div class="kpi-value">28</div></div>
+          <div class="ads-kpi"><div class="kpi-label">CTR</div><div class="kpi-value green">1.81%</div></div>
+          <div class="ads-kpi"><div class="kpi-label">CPM</div><div class="kpi-value orange">$20.67</div></div>
+        </div>
+        <div class="ads-kpi-row">
+          <div class="ads-kpi"><div class="kpi-label">Lead</div><div class="kpi-value">7</div></div>
+          <div class="ads-kpi"><div class="kpi-label">Chat</div><div class="kpi-value">7</div></div>
+          <div class="ads-kpi"><div class="kpi-label">REG</div><div class="kpi-value">3</div></div>
+          <div class="ads-kpi"><div class="kpi-label">FDC</div><div class="kpi-value">0</div></div>
+        </div>
+        <div class="ads-tag-row"><span class="lozenge lg">CTR 1.81% 全月最高</span><span class="lozenge lb">仅2天·待观察</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2472 -->
+  <div class="ads-card no-conv">
+    <div class="ads-card-header">
+      <div class="ads-name">USC_WIKH_TRSA_IM_2472_KH01</div>
+      <span class="lozenge ly">PAUSED ⏸</span>
+    </div>
+    <div class="ads-card-body">
+      <div class="ads-preview">
+        <img src="https://inz9-huat.com/USC_Pbi_report_assets/USC_WIKH_TRSA_IM_2472_KH01.jpg" alt="2472" onerror="this.style.background='#F4F5F7';this.alt='Slot + 24/7 Service'">
+        <div class="preview-label">Slot + 24/7 Service</div>
+      </div>
+      <div class="ads-kpi-section">
+        <div class="kpi-group-label">📊 支出侧</div>
+        <div class="ads-kpi-row">
+          <div class="ads-kpi"><div class="kpi-label">Spend</div><div class="kpi-value">$11.15</div></div>
+          <div class="ads-kpi"><div class="kpi-label">IMP</div><div class="kpi-value">703</div></div>
+          <div class="ads-kpi"><div class="kpi-label">CTR</div><div class="kpi-value green">1.56%</div></div>
+          <div class="ads-kpi"><div class="kpi-label">Lead</div><div class="kpi-value">4</div></div>
+          <div class="ads-kpi"><div class="kpi-label">FDC</div><div class="kpi-value red">0</div></div>
+        </div>
+        <div class="ads-tag-row"><span class="lozenge lg">CTR 1.56%</span><span class="lozenge lgr">小额测试 5/25–5/29</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRD1_KH02 -->
+  <div class="ads-card awareness">
+    <div class="ads-card-header">
+      <div class="ads-name">USC_WIKH_TRAW_VD_BRD1_KH02</div>
+      <span class="lozenge ly">PAUSED ⏸</span><span class="lozenge lp">品牌 Awareness 型</span>
+    </div>
+    <div class="ads-card-body">
+      <div class="ads-preview">
+        <img src="https://inz9-huat.com/USC_Pbi_report_assets/USC_WIKH_TRAW_VD_BRD1_KH02.jpg" alt="BRD1_KH02" onerror="this.style.background='#EAE6FF';this.alt='Brand Introduction WIKH'">
+        <div class="preview-label">Brand Introduction (WIKH)</div>
+      </div>
+      <div class="ads-kpi-section">
+        <div class="kpi-group-label">📊 支出侧（5/14–5/15 仅2天）</div>
+        <div class="ads-kpi-row">
+          <div class="ads-kpi"><div class="kpi-label">Spend</div><div class="kpi-value">$9.71</div></div>
+          <div class="ads-kpi"><div class="kpi-label">IMP</div><div class="kpi-value">45,113</div></div>
+          <div class="ads-kpi"><div class="kpi-label">Clicks</div><div class="kpi-value">61</div></div>
+          <div class="ads-kpi"><div class="kpi-label">CTR</div><div class="kpi-value red">0.14%</div></div>
+          <div class="ads-kpi"><div class="kpi-label">CPM</div><div class="kpi-value green">$0.22</div></div>
+        </div>
+        <div class="ads-kpi-row">
+          <div class="ads-kpi"><div class="kpi-label">FDC</div><div class="kpi-value red">0</div></div>
+        </div>
+        <div class="ads-tag-row"><span class="lozenge lp">品牌Awareness·非转化型</span><span class="lozenge lr">CTR 0.14% 极低</span></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- ads-grid end -->
+
+<!-- §6 素材排名（含图）-->
+<h2>§6 · 当月素材核心指标对比排名</h2>
+<h3>按 Spend 排名（含素材缩略图）</h3>
+<table>
+  <tr><th></th><th>排名</th><th>素材简称</th><th>描述</th><th>Spend</th><th>IMP</th><th>CTR</th><th>CPM</th><th>Lead</th><th>REG</th><th>FDC</th></tr>
+  <tr>
+    <td class="img-cell"><img class="rank-img" src="https://www.facebook.com/ads/image/?d=AQLwWwvNBtJKai3LKFJxe9l5nDwluZJDmWtDgOXVdrXVu3bdj2LuSH3rPWEXqTpSMqhTD3d2cRk2amaHosTWfVTlJYNNDCYfEqnrFtHarZmOvArtKXeKsoI9vqZrETSPduXpItflMVv8hoDxNGE-dUwS" alt="" onerror="this.outerHTML='<div class=rank-no-img>2471</div>'"></td>
+    <td>🥇 1</td><td><span class="code">IM_2471_KH01</span></td><td>24/7 Support Service</td>
+    <td>$260.16</td><td>59,386</td><td>1.22%</td><td>$4.38</td><td>29</td><td>6</td><td>0</td>
+  </tr>
+  <tr>
+    <td class="img-cell"><img class="rank-img" src="https://inz9-huat.com/USC_Pbi_report_assets/USC_WIKH_TRSA_VD_SLT2_KH01.jpg" alt="" onerror="this.outerHTML='<div class=rank-no-img>SLT2</div>'"></td>
+    <td>🥈 2</td><td><span class="code">VD_SLT2_KH01</span></td><td>Ways of Qilin + AI Girl</td>
+    <td>$157.93</td><td>5,205</td><td><strong>1.40%</strong></td><td>$30.34</td><td>22</td><td>7</td><td><strong>1</strong></td>
+  </tr>
+  <tr>
+    <td class="img-cell"><img class="rank-img" src="https://inz9-huat.com/USC_Pbi_report_assets/USC_WIKH_TRSA_IM_CRS1_KH01.jpg" alt="" onerror="this.outerHTML='<div class=rank-no-img>CRS1</div>'"></td>
+    <td>🥉 3</td><td><span class="code">IM_CRS1_KH01</span></td><td>Carousel Slot+Live+Promo</td>
+    <td>$132.63</td><td>34,356</td><td>1.21%</td><td>$3.86</td><td>13</td><td>2</td><td>0</td>
+  </tr>
+  <tr>
+    <td class="img-cell"><img class="rank-img" src="https://www.facebook.com/ads/image/?d=AQLBAHhCFLFi9JWplgIxkB9LsVDZ8hHkV8pk3WpaDSWBQlJIJ-N6fJFAUg0GSSoOz1JPNqNmPOorMtaDdJGaNSKkTDj3gtkXNJeEhFGxJM5YzMPVewWlrZ2lJRzHyM1Wj9uAi5dOgTK4ie3svU3MkLrc" alt="" onerror="this.outerHTML='<div class=rank-no-img>CRS2</div>'"></td>
+    <td>4</td><td><span class="code">IM_CRS2_KH01</span></td><td>AI Girl Carousel</td>
+    <td>$57.29</td><td>3,968</td><td>1.21%</td><td>$14.44</td><td>5</td><td>0</td><td>0</td>
+  </tr>
+  <tr>
+    <td class="img-cell"><img class="rank-img" src="https://www.facebook.com/ads/image/?d=AQLRZJN9N7MKdSxV1Wb0QgsSDAhzSni-NSbc-OnJwl_Ohwyduz90d-G5ozWkdAUcz_qNHiB6WR4w9FdJVh5hevi_e2Wf_pXiezK8BoddHdxuHW7pRAsKOof7fs9pzTNTQ-vG-oK0DzXaFuThDImxs3RL" alt="" onerror="this.outerHTML='<div class=rank-no-img>SLT1</div>'"></td>
+    <td>5</td><td><span class="code">IM_SLT1_KH01</span></td><td>Multiple Slot Image</td>
+    <td>$38.85</td><td>12,982</td><td>1.29%</td><td>$2.99</td><td>2</td><td>0</td><td>0</td>
+  </tr>
+  <tr>
+    <td class="img-cell"><img class="rank-img" src="https://www.facebook.com/ads/image/?d=AQJg-nJtGSGCLubvv9yAnspXQNNWsnJfZFmSHUB4YTx-8Q2VBxHYxRC9KiGK50HnK-PNRAB1BANncHuztXwaRzUrhpgo4GgSlkIRQ0F3krUoWXmXZzErqAaQtJuiLqum616dAonHSv6j8pBszxdtWyhW" alt="" onerror="this.outerHTML='<div class=rank-no-img>BNS1</div>'"></td>
+    <td>6</td><td><span class="code">VD_BNS1_KH01</span></td><td>Bonus</td>
+    <td>$32.04</td><td>1,550</td><td><strong>1.81%</strong></td><td>$20.67</td><td>7</td><td>3</td><td>0</td>
+  </tr>
+  <tr>
+    <td class="img-cell"><img class="rank-img" src="https://inz9-huat.com/USC_Pbi_report_assets/USC_WIKH_TRSA_IM_2472_KH01.jpg" alt="" onerror="this.outerHTML='<div class=rank-no-img>2472</div>'"></td>
+    <td>7</td><td><span class="code">IM_2472_KH01</span></td><td>Slot + 24/7 Service</td>
+    <td>$11.15</td><td>703</td><td>1.56%</td><td>$15.86</td><td>4</td><td>0</td><td>0</td>
+  </tr>
+  <tr>
+    <td class="img-cell"><img class="rank-img" src="https://inz9-huat.com/USC_Pbi_report_assets/USC_WIKH_TRAW_VD_BRD1_KH02.jpg" alt="" onerror="this.outerHTML='<div class=rank-no-img>BRD1</div>'"></td>
+    <td>8</td><td><span class="code">TRAW_BRD1_KH02</span></td><td>Brand Introduction</td>
+    <td>$9.71</td><td>45,113</td><td>0.14%</td><td>$0.22</td><td>—</td><td>—</td><td>0</td>
+  </tr>
+</table>
+
+<!-- §7 留存层（按周）-->
+<h2>§7 · 玩家留存层数据（D7 / D15 / D30）— 按周展示</h2>
+<p class="section-note">
+  报告生成日：2026年6月3日（周三）。17WINKH 全月仅 1 位 FDC（5/30 首存，归属 SLT2_KH01 素材）。<br>
+  D7成熟条件：报告日 − 首存日 ≥ 7天。5/30 + 7 = 6/6，尚未成熟，全部留存数据无法评估。
+</p>
+<table>
+  <tr><th>首存周</th><th>周期</th><th>FDC</th><th>FDA</th><th>D7A</th><th>D7 状态</th><th>D15A</th><th>D15 状态</th><th>D30A</th><th>D30 状态</th><th>归因素材</th></tr>
+  <tr><td><strong>W1–W4</strong></td><td>4/27–5/24</td><td>0</td><td>—</td><td>—</td><td><span style="font-size:10px;color:#6B778C">无FDC</span></td><td>—</td><td><span style="font-size:10px;color:#6B778C">无FDC</span></td><td>—</td><td><span style="font-size:10px;color:#6B778C">无FDC</span></td><td>—</td></tr>
+  <tr><td><strong>W5</strong></td><td>5/25–5/31</td><td>1</td><td>$5.00</td><td>—</td><td><span style="background:#F4F5F7;color:#5E6C84;font-size:10px;padding:1px 5px;border-radius:2px">未成熟·6/6到期</span></td><td>—</td><td><span style="background:#F4F5F7;color:#5E6C84;font-size:10px;padding:1px 5px;border-radius:2px">未成熟·仍在累积</span></td><td>—</td><td><span style="background:#F4F5F7;color:#5E6C84;font-size:10px;padding:1px 5px;border-radius:2px">未成熟</span></td><td>SLT2_KH01</td></tr>
+  <tr style="background:#F0F0FF;font-weight:700"><td>5月合计</td><td>—</td><td>1</td><td>$5.00</td><td colspan="6" style="color:#6B778C;font-size:12px;font-weight:400">全月留存数据均未成熟，留待6月月报正式评估（D7 成熟日：6/6）</td><td>—</td></tr>
+</table>
+<div class="panel warning"><div class="panel-icon">⚠️</div><div class="panel-body">
+  <strong>D系列评估：</strong>17WINKH 5月全月仅 1 位 FDC（5/30），所有 D7/D15/D30 均未成熟，本月无留存数据可分析。建议6月月报跟踪该客户 D7A 是否达到 L2 单客目标 $100，以及 GGR 负值（-$20）是否属于退款调账异常。
+</div></div>
+
+<!-- §8 结论 -->
+<h2>§8 · 核心结论与建议</h2>
+<div class="panel error"><div class="panel-icon">🚨</div><div class="panel-body">
+  <strong>结论一：漏斗下层严重断层，月度 GGR 未达成。</strong>Chat 107次 → REG 19人 → FDC 仅 1 人，REG→FDC 转化率 5.3%（目标 25%）。GGR -$20 疑为退款异常，请核查。
+</div></div>
+<div class="panel error"><div class="panel-icon">⚠️</div><div class="panel-body">
+  <strong>结论二：素材 CTR 整体不错（1.2–1.8%），但受众未能转化为首存用户。</strong>可能原因：①客服首存引导策略不足；②受众与高质量付费用户未精准匹配；③品牌信任度建立中，新用户观望较多。
+</div></div>
+<div class="panel success"><div class="panel-icon">💡</div><div class="panel-body">
+  <strong>结论三：VD_SLT2_KH01 是当前最佳素材，BNS1_KH01 CTR 1.81% 最高。</strong>建议将预算重点集中于 SLT2 和 BNS1，同时停止投放无转化的 CRS1/SLT1/2471（或改为更精准受众组）。
+</div></div>
+<div class="panel info"><div class="panel-icon">📌</div><div class="panel-body">
+  <strong>建议：</strong>①优化客服引导首存话术，设计低门槛欢迎礼包；②停用品牌 Awareness 型（BRD1，CTR 0.14%）；③考虑新增提款证明类素材提升信任感；④6月核查 GGR -$20 异常，追踪 W5 首存客户 D7 表现。
+</div></div>
+
+<hr>
+<p style="font-size:11px;color:#6B778C;text-align:center">
+  【USC 分析】本报告由 Claude AI 自动生成 · 数据来源：Supabase <code>usc_campaign_result</code><br>
+  报告生成时间：2026年6月3日（周三）· 汇报周期：2026年5月1日–5月31日 · 货币单位：USD<br>
+  品牌：17WINKH · KPI 依据：USC_SBKH_17WINKH Brand Playbook
+</p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+new Chart(document.getElementById('weeklyChart'),{type:'bar',data:{labels:['W1\n4/27–5/3','W2\n5/4–5/10','W3\n5/11–5/17','W4\n5/18–5/24','W5\n5/25–5/31'],datasets:[{label:'Ads Spend ($)',type:'bar',data:[12.46,0,127.93,300.92,270.91],backgroundColor:'rgba(101,84,192,0.7)',borderRadius:4,yAxisID:'y',order:2},{label:'Lead (人)',type:'line',data:[0,0,7,34,41],borderColor:'#FF8B00',borderDash:[5,3],borderWidth:2,pointRadius:4,tension:0.2,fill:false,yAxisID:'y2',order:1},{label:'Chat (人)',type:'line',data:[1,0,16,44,47],borderColor:'#0052CC',borderWidth:2,pointRadius:4,tension:0.2,fill:false,yAxisID:'y2',order:1},{label:'REG (人)',type:'line',data:[0,0,0,6,13],borderColor:'#00875A',borderWidth:2.5,pointRadius:5,tension:0.2,fill:false,yAxisID:'y2',order:1}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'top',labels:{font:{size:11},color:'#5E6C84',boxWidth:12,padding:14}}},scales:{x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#5E6C84',font:{size:11}}},y:{position:'left',beginAtZero:true,ticks:{color:'#5E6C84',font:{size:11}},title:{display:true,text:'Spend ($)',color:'#6554C0',font:{size:11}}},y2:{position:'right',beginAtZero:true,grid:{display:false},ticks:{color:'#5E6C84',font:{size:11}},title:{display:true,text:'人数',color:'#5E6C84',font:{size:11}}}}}});
+
+// GGR chart (Apr=0 as baseline, May W5=-20)
+new Chart(document.getElementById('ggrChart'),{type:'bar',data:{
+  labels:['W1','W2','W3','W4','W5'],
+  datasets:[
+    {label:'4月 GGR',data:[0,0,0,0,0],backgroundColor:'rgba(179,186,197,0.7)',borderRadius:3,barPercentage:0.4},
+    {label:'5月 GGR',data:[0,0,0,0,-20],backgroundColor:'rgba(101,84,192,0.7)',borderRadius:3,barPercentage:0.4}
+  ]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11},color:'#5E6C84',boxWidth:12,padding:12}}},scales:{x:{ticks:{color:'#5E6C84',font:{size:11}}},y:{beginAtZero:false,ticks:{color:'#5E6C84',font:{size:11}},title:{display:true,text:'GGR ($)',color:'#5E6C84',font:{size:11}}}}}});
+</script>
+</body>
+</html>
